@@ -2,7 +2,16 @@
   "name": "yahc",
   "description": "Yet Another Http Client",
   "version": "1.0.0",
-  "author": "Nicola Del Gobbo <nicoladelgobbo@gmail.com>",
+  "contributors": [
+    {
+      "name": "Mauro Doganieri",
+      "email": "mauro.doganieri@gmail.com"
+    },
+    {
+      "name": "Nicola Del Gobbo",
+      "email": "nicoladelgobbo@gmail.com"
+    }
+  ],
   "keywords": [
     "client",
     "http",

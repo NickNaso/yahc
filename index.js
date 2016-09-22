@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Nicola Del Gobbo
+ * Copyright (c) 2016 Mauro Doganieri - Nicola Del Gobbo
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the license at http://www.apache.org/licenses/LICENSE-2.0
@@ -13,11 +13,10 @@
  * permissions and limitations under the License.
  *
  * Contributors - initial API implementation:
+ * Mauro Doganieri <mauro.doganieri@gmail.com>
  * Nicola Del Gobbo <nicoladelgobbo@gmail.com>
  ******************************************************************************/
 
 'use strict';
 
-/*!
- * Module dependencies
- */
+module.exports = require('./lib');
