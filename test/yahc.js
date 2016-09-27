@@ -23,3 +23,4 @@
 /*!
  * Module dependencies
  */
+const HttpClient = require('../');
