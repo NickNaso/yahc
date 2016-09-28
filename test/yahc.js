@@ -101,14 +101,16 @@ describe("Test yahc", function () {
         qs: {},
         encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
         isJson: false,
-        timeout: 3000
+        timeout: HttpClient.DEFAULT_TIMEOUT
       })
       .then((response) => {
-        console.log(response);
+        expect(response.body).toBe("Come up to meet you, tell you I'm sorry");
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
         done();
       })
       .catch((err) => {
-        console.log(err);
+        expect(err).toBeUndefined();
         done();
       });  
     }
@@ -126,11 +128,14 @@ describe("Test yahc", function () {
         timeout: 3000
       })
       .then((response) => {
-        console.log(response);
+        expect(response.body)
+        .toEqual({message: "Come up to meet you, tell you I'm sorry"});
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
         done();
       })
       .catch((err) => {
-        console.log(err);
+        expect(err).toBeUndefined();
         done();
       });  
     }
