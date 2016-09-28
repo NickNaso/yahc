@@ -60,10 +60,10 @@ describe("Test yahc", function () {
     )
   );
   app.get("/get", function (req, res) {
-    //res.send("Come up to meet you, tell you I'm sorry");
+    res.send("Come up to meet you, tell you I'm sorry");
   });
   app.get("/get-json", function (req, res) {
-    res.status(200).json({});
+    res.status(200).json({message: "Come up to meet you, tell you I'm sorry"});
   });
   app.post("/post", function (req, res) {
 
@@ -101,25 +101,38 @@ describe("Test yahc", function () {
         qs: {},
         encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
         isJson: false,
-        timeout: 3000,
-        ntries: 3
+        timeout: 3000
       })
       .then((response) => {
         console.log(response);
         done();
       })
       .catch((err) => {
-        //console.log(err);
+        console.log(err);
         done();
-      });
-      
+      });  
     }
   );
 
   it(
     "GET - application/x-www-form-urlencoded - json", 
     function (done) {
-      done();
+       HttpClient.get({
+        url: "http://" + host + ":" + port + "/get-json",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: true,
+        timeout: 3000
+      })
+      .then((response) => {
+        console.log(response);
+        done();
+      })
+      .catch((err) => {
+        console.log(err);
+        done();
+      });  
     }
   );
 

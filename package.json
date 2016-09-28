@@ -14,7 +14,8 @@
     "rest",
     "api",
     "restful",
-    "request"
+    "request",
+    "webservice"
   ],
   "license": "Apache-2.0",
   "scripts": {
