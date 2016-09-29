@@ -66,13 +66,20 @@ describe("Test yahc", function () {
     res.status(200).json({message: "Come up to meet you, tell you I'm sorry"});
   });
   app.post("/post", function (req, res) {
-
+    let myBody = req.body || {};
+    res.status(200).send(myBody);
   });
   app.post("/post-json", function (req, res) {
-
+    let myBody = req.body || {};
+    res.status(200).json(myBody);
   });
   app.post("/post-form-data", function (req, res) {
-
+    let form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+      console.log("fields => ", fields);
+      console.log("files => ", files);
+      res.status(200).json({fields: fields, files: files});
+    });
   });
   app.put("/put", function (req, res) {
 
@@ -119,7 +126,7 @@ describe("Test yahc", function () {
   it(
     "GET - application/x-www-form-urlencoded - json", 
     function (done) {
-       HttpClient.get({
+      HttpClient.get({
         url: "http://" + host + ":" + port + "/get-json",
         headers: {},
         qs: {},
@@ -144,21 +151,93 @@ describe("Test yahc", function () {
   it(
     "POST - application/x-www-form-urlencoded", 
     function (done) {
-      done();
+      let myBody = {
+        name: "yahc",
+        description: "Yet Another Http Client",
+        version: "1.0.0"
+      };
+      HttpClient.post({
+        url: "http://" + host + ":" + port + "/post",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: false,
+        body: myBody,
+        timeout: HttpClient.DEFAULT_TIMEOUT
+      })
+      .then((response) => {
+        expect(JSON.parse(response.body)).toEqual(myBody);
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        expect(err).toBeUndefined();
+        done();
+      });  
     }
   );
 
   it(
     "POST - application/x-www-form-urlencoded - json", 
     function (done) {
-      done();
+      let myBody = {
+        name: "yahc",
+        description: "Yet Another Http Client",
+        version: "1.0.0"
+      };
+      HttpClient.post({
+        url: "http://" + host + ":" + port + "/post-json",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: true,
+        body: myBody,
+        timeout: HttpClient.DEFAULT_TIMEOUT
+      })
+      .then((response) => {
+        expect(response.body).toEqual(myBody);
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        expect(err).toBeUndefined();
+        done();
+      });  
     }
   );
 
   it(
     "POST - multipart/form-data", 
     function (done) {
-      done();
+       let myBody = {
+        name: "yahc",
+        description: "Yet Another Http Client",
+        version: "1.0.0"
+      };
+      let uploadFile = fs.createReadStream(__dirname +'/upload/upload.txt');
+      HttpClient.post({
+        url: "http://" + host + ":" + port + "/post-form-data",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.MULTIPART_FORM_DATA,
+        isJson: true,
+        body: myBody,
+        timeout: HttpClient.DEFAULT_TIMEOUT,
+        files: [uploadFile]
+      })
+      .then((response) => {
+        //expect(response.body).toEqual(myBody);
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        console.log(err);
+        expect(err).toBeUndefined();
+        done();
+      });  
     }
   );
 
