@@ -36,29 +36,8 @@ describe("Test yahc", function () {
 
   // Set express app to test the rest client
   const app = express();
-  app
-  .use(
-    bodyParser
-    .json(
-      {
-        strict: true,
-        inflate: true,
-        limit: "5mb"
-      }
-    )
-  );
-  app
-  .use(
-    bodyParser
-    .urlencoded(
-      {
-        extended: false,
-        inflate: true, 
-        limit: "5mb",
-        parameterLimit: 1000
-      }
-    )
-  );
+  app.use(bodyParser.json({inflate: true}));
+  app.use(bodyParser.urlencoded({extended: false, inflate: true}));
   app.get("/get", function (req, res) {
     res.send("Come up to meet you, tell you I'm sorry");
   });
