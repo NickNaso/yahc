@@ -54,6 +54,7 @@ describe("Test yahc", function () {
   });
   app.post("/post-form-data", function (req, res) {
     let form = new formidable.IncomingForm();
+    form.multiples = true;
     form.parse(req, function(err, fields, files) {
       console.log("fields => ", fields);
       console.log("files => ", files);
@@ -204,7 +205,7 @@ describe("Test yahc", function () {
         isJson: true,
         body: myBody,
         timeout: HttpClient.DEFAULT_TIMEOUT,
-        files: [uploadFile]
+        files: [uploadFile, {attach: uploadFile}]
       })
       .then((response) => {
         //expect(response.body).toEqual(myBody);
