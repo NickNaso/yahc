@@ -1,11 +1,15 @@
 {
   "name": "yahc",
   "description": "Yet Another Http Client",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "contributors": [
     {
       "name": "Nicola Del Gobbo",
       "email": "nicoladelgobbo@gmail.com"
+    },
+    {
+      "name": "Mauro Doganieri",
+      "email": "mauro.doganieri@gmail.com"
     }
   ],
   "keywords": [

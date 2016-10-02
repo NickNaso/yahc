@@ -1,6 +1,6 @@
 
 /*******************************************************************************
- * Copyright (c) 2016 Nicola Del Gobbo
+ * Copyright (c) 2016 Nicola Del Gobbo - Mauro Doganieri 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the license at http://www.apache.org/licenses/LICENSE-2.0
@@ -15,6 +15,7 @@
  *
  * Contributors - initial API implementation:
  * Nicola Del Gobbo <nicoladelgobbo@gmail.com>
+ * Mauro Doganieri <mauro.doganieri@gmail.com>
  ******************************************************************************/
 
 'use strict';

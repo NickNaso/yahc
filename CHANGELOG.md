@@ -1,5 +1,13 @@
 # Changelog
 
+2.0.0 / 2016-10-03
+==================
+
+ * New version for **`yahc`** update from version 1.0.0 to 2.0.0
+ * Added support for multipart/form-data for files uploading
+ * Added some test case to cover most important features
+ * Added documentation 
+
 1.0.0 / 2016-09-29
 ==================
 
