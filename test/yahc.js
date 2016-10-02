@@ -205,7 +205,7 @@ describe("Test yahc", function () {
         isJson: true,
         body: myBody,
         timeout: HttpClient.DEFAULT_TIMEOUT,
-        files: [uploadFile, {attach: uploadFile}]
+        files: [uploadFile, uploadFile, {name: "myFile", file: uploadFile}]
       })
       .then((response) => {
         //expect(response.body).toEqual(myBody);
