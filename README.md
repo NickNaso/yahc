@@ -55,5 +55,37 @@ HttpClient.get({
   // Do something with error response
   console.error(err); 
 });  
-
 ```
+
+## Headers
+Every method of yahc allow you to set header of the request. In particular every
+take in input an objet parameter **headers** that is an object with key value
+representation of the header request.
+
+#### Example:
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+HttpClient.get({
+  url: "YOUR URL",
+  // HERE YOUR KEY VALUE PAIRS FOR headers
+  headers: {
+    Authorization: "Basic "+ "myUsername:myPassword".toString('base64')
+  },
+  qs: {},
+  encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+  isJson: false,
+  timeout: HttpClient.DEFAULT_TIMEOUT
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+```
+
