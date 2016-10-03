@@ -323,13 +323,13 @@ HttpClient.get({
 **Yet Another Http Client** allow make http request with simplicity. The 
 supported HTTP verbs are:
 
-* GET - .get() method
-* POST - .post() method
-* PUT - .put() method
-* DELETE - .delete() method
+* **GET** - .get() method
+* **POST** - .post() method
+* **PUT** - .put() method
+* **DELETE** - .delete() method
  
 ## GET
-HTTP GET request is very simple with **yahc** you just call the mwethod **get**
+HTTP GET request is very simple with **yahc** you just call the method **get**
 and set the following parameter:
 * **url** - Represent the url / uri of the requested resource
 * **headers** - Headers for the request. Object that contain key value for the
@@ -341,8 +341,9 @@ is allowed for get request.
 * **isJson** - true / false. Setted true the value "Content-type: application/json"
 will be added to the request header and the server body response will be parsed
 as JSON.
+* **timeout** - Number of milliseconds after that the client return timeout error
 
-## Example 
+#### Example 
 
 ```javascript
 'use strict';
@@ -373,10 +374,105 @@ HttpClient.get({
 ```
  
 ## POST e PUT
+HTTP POST or PUT request is very simple with **yahc** you just call the method 
+**post** or **put** and set the following parameter:
+* **url** - Represent the url / uri of the requested resource
+* **headers** - Headers for the request. Object that contain key value for the
+headers.
+* **qs** - Querystring for the reuqest. Object that contain key value for the
+querystring.
+* **encType** - Encoding for the request.
+* **isJson** - true / false. Setted true the value "Content-type: application/json"
+will be added to the request header and the server body response will be parsed
+as JSON.
+* **body** - The body for the http request. It's an object that contain key 
+value for the body.
+* **timeout** - Number of milliseconds after that the client return timeout error
+#### Example 
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+// use timeout to  make request using yahc
+HttpClient.post({
+  url: "YOUR URL",
+  headers: {
+    Authorization: "Basic "+ "myUsername:myPassword".toString('base64')
+  },
+  qs: {
+    q: "http client"
+  },
+  encType: HttpClient.X_WWW_FORM_URLENCODED,
+  isJson: true,
+  timeout: 7000,
+  body: {
+    ping: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+``` 
 
 ## POST e PUT (Upload file)
+
  
 ## DELETE
+HTTP DELETE request is very simple with **yahc** you just call the method 
+**delete** and set the following parameter:
+* **url** - Represent the url / uri of the requested resource
+* **headers** - Headers for the request. Object that contain key value for the
+headers.
+* **qs** - Querystring for the reuqest. Object that contain key value for the
+querystring.
+* **encType** - Encoding for the request. Only  application/x-www-form-urlencoded
+is allowed for get request.
+* **isJson** - true / false. Setted true the value "Content-type: application/json"
+will be added to the request header and the server body response will be parsed
+as JSON.
+* **body** - The body for the http request. It's an object that contain key 
+value for the body.
+* **timeout** - Number of milliseconds after that the client return timeout error
+
+#### Example 
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+// use timeout to  make request using yahc
+HttpClient.delete({
+  url: "YOUR URL",
+  headers: {
+    Authorization: "Basic "+ "myUsername:myPassword".toString('base64')
+  },
+  qs: {
+    q: "http client"
+  },
+  encType: HttpClient.X_WWW_FORM_URLENCODED,
+  isJson: true,
+  body: {
+    ping: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+  timeout: 7000
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+```
 
 
 
