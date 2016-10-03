@@ -205,5 +205,117 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
+## isJson 
+This parameter
+
+
+## Response
+When making request you obtain a response from the server. Tha response matches
+the requested resource or an error. **yahc** structrude the object response in
+three parts:
+* haders - Contains the headers of the server response
+* body - Contains the body of the server response
+* statusCode - Represent the HTTP status code for the server response
+
+#### Example
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+// get default timeout
+let timeout = HttpClient.DEFAULT_TIMEOUT;
+
+// you can set your preferred timeout in ms
+timeout = 5000;
+
+// use timeout to  make request using yahc
+HttpClient.get({
+  url: "YOUR URL",
+  headers: {},
+  qs: {},
+  encType: urlencode,
+  isJson: true,
+  timeout: timeout
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);
+  // OUTPUT:
+  /*
+  { 
+    headers: {
+      'x-powered-by': 'Express',
+      'content-type': 'application/json; charset=utf-8',
+      'content-length': '53',
+      etag: 'W/"35-qoJ3nLnfyzCPwauBZcdTpQ"',
+      date: 'Mon, 03 Oct 2016 00:54:28 GMT',
+      connection: 'close'
+    },
+    body: { message: 'Come up to meet you, tell you I\'m sorry' },
+    statusCode: 200
+  }
+  */
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+``` 
+
+If the server response contain one of the HTTP error (for more info see:
+[HTTP ERRORS](https://www.npmjs.com/package/error-types)) **yahc** throw a
+ResponseError an object that represent the error and internally contain the 
+server response.
+
+#### Example
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+// get default timeout
+let timeout = HttpClient.DEFAULT_TIMEOUT;
+
+// you can set your preferred timeout in ms
+timeout = 5000;
+
+// use timeout to  make request using yahc
+HttpClient.get({
+  url: "YOUR URL",
+  headers: {},
+  qs: {},
+  encType: urlencode,
+  isJson: true,
+  timeout: timeout
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err.response); 
+  console.error(err.message);
+  // OUTPUT:
+  /*
+  { 
+    headers: {
+      'x-powered-by': 'Express',
+      'content-type': 'application/json; charset=utf-8',
+      'content-length': '53',
+      etag: 'W/"35-qoJ3nLnfyzCPwauBZcdTpQ"',
+      date: 'Mon, 03 Oct 2016 00:54:28 GMT',
+      connection: 'close'
+    },
+    body: { message: 'Come up to meet you, tell you I\'m sorry' },
+    statusCode: 200
+  }
+  */
+});  
+```
+
 
 
