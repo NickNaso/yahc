@@ -205,9 +205,11 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
-## isJson 
-This parameter
 
+## isJson 
+The parameter **isJson** is common for all method of **yahc** and  if setted to 
+true the value "Content-type: application/json" will be added to the request 
+header and the server body response will be parsed as JSON.  
 
 ## Response
 When making request you obtain a response from the server. Tha response matches
