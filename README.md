@@ -114,7 +114,7 @@ let urlencode = HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED;
 // get multipart/form-data
 let formdata = HttpClient.ENC_TYPES.MULTIPART_FORM_DATA;
 
-// use urlencode or formdata to meke request using yahc
+// use urlencode or formdata to make request using yahc
 HttpClient.get({
   url: "YOUR URL",
   headers: {},
@@ -132,5 +132,46 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
+
+## Timeout
+Sometimes the server for which you make a request coul be not available so after
+some period of times you get a timeout erro the server bot able to give you a 
+valid response after the specified time. Default timeout parameter is setted to
+15000 ms, but you free to change that value. **yahc** expose the value of 
+default timeout through the constant DEFAULT_TIMEOUT. 
+
+#### Example
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+// get default timeout
+let timeout = HttpClient.DEFAULT_TIMEOUT;
+
+// you can set your preferred timeout in ms
+timeout = 5000;
+
+// use timeout to  make request using yahc
+HttpClient.get({
+  url: "YOUR URL",
+  headers: {},
+  qs: {},
+  encType: urlencode,
+  isJson: false,
+  timeout: timeout
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+```
+  
+
 
 
