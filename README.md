@@ -319,5 +319,15 @@ HttpClient.get({
 });  
 ```
 
+## Make request
+**Yet Another Http Client** allow make http request with simplicity. The 
+supported HTTP verbs are:
+* GET - .get() method
+* POST - .post() method
+* PUT - .put() method
+* DELETE - .delete() method
+ 
+ ## 
+
 
 
