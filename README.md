@@ -28,6 +28,7 @@ launch this command:
 ```console
 npm install yahc --save
 ```
+
 ## Simple  use
 
 To start using **yahc** you import it in you project the to make request use one
@@ -58,7 +59,6 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
-
 ## Headers
 Every method of **yahc** allow you to set header of the request. In particular 
 every take in input an objet parameter **headers** that is an object with key 
@@ -91,7 +91,6 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
-
 ## encType 
 Every method of **yahc** has encType parameter which represent the encoding 
 type used by **yahc** to send data to the server. In general there are two
@@ -132,7 +131,6 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
-
 ## Timeout
 Sometimes the server for which you make a request coul be not available so after
 some period of times you get a timeout erro the server bot able to give you a 
@@ -172,7 +170,7 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
-  
+
 ## Querystring
 Every method of **yahc** allow you to set querystring of the request. In 
 particular every take in input an objet parameter **qs** that is an object with
@@ -205,7 +203,6 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
-
 ## isJson 
 The parameter **isJson** is common for all method of **yahc** and  if setted to 
 true the value "Content-type: application/json" will be added to the request 
@@ -215,9 +212,9 @@ header and the server body response will be parsed as JSON.
 When making request you obtain a response from the server. Tha response matches
 the requested resource or an error. **yahc** structrude the object response in
 three parts:
-* haders - Contains the headers of the server response
-* body - Contains the body of the server response
-* statusCode - Represent the HTTP status code for the server response
+* **haders** - Contains the headers of the server response
+* **body** - Contains the body of the server response
+* **statusCode** - Represent the HTTP status code for the server response
 
 #### Example
 
@@ -318,7 +315,6 @@ HttpClient.get({
   */
 });  
 ```
-
 ## Make request
 **Yet Another Http Client** allow make http request with simplicity. The 
 supported HTTP verbs are:
@@ -327,7 +323,7 @@ supported HTTP verbs are:
 * **POST** - .post() method
 * **PUT** - .put() method
 * **DELETE** - .delete() method
- 
+
 ## GET
 HTTP GET request is very simple with **yahc** you just call the method **get**
 and set the following parameter:
@@ -372,7 +368,6 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
- 
 ## POST e PUT
 HTTP POST or PUT request is very simple with **yahc** you just call the method 
 **post** or **put** and set the following parameter:
@@ -388,6 +383,7 @@ as JSON.
 * **body** - The body for the http request. It's an object that contain key 
 value for the body.
 * **timeout** - Number of milliseconds after that the client return timeout error
+
 #### Example 
 
 ```javascript
@@ -420,10 +416,56 @@ HttpClient.post({
   console.error(err); 
 });  
 ``` 
-
 ## POST e PUT (Upload file)
+In case you want to upload one or more file you need to call **post** or **put**
+method with encType setted to multipart/form-data and the parameter files that
+represent an array of files or files representation that you want to upload on 
+th server. Post and put parameter in case of upload:
+* **url** - Represent the url / uri of the requested resource
+* **headers** - Headers for the request. Object that contain key value for the
+headers.
+* **qs** - Querystring for the reuqest. Object that contain key value for the
+querystring.
+* **encType** - Encoding for the request. In case of file upload it have to be
+setted to multpart/form-data
+* **isJson** - true / false. Setted true the value "Content-type: application/json"
+will be added to the request header and the server body response will be parsed
+as JSON.
+* **body** - The body for the http request. It's an object that contain key 
+value for the body.
+* **timeout** - Number of milliseconds after that the client return timeout error
+* **files** - This parameter represent the list of file you want to upload. It 
+is an array and its element must be a Buffer a Readable stream or object with this
+form {name: "myFieldName", file: "Buffer or Readable stream}
 
- 
+#### Example
+
+```javascript
+let myBody = {
+  name: "yahc",
+  description: "Yet Another Http Client",
+  version: "1.0.0"
+};
+let uploadFile = fs.createReadStream(__dirname +'YOUR PATH');
+HttpClient.post({
+  url: "YOUR URL",
+  headers: {},
+  qs: {},
+  encType: HttpClient.ENC_TYPES.MULTIPART_FORM_DATA,
+  isJson: true,
+  body: myBody,
+  timeout: HttpClient.DEFAULT_TIMEOUT,
+  files: [uploadFile, uploadFile, {name: "myFile", file: uploadFile}]
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+```
 ## DELETE
 HTTP DELETE request is very simple with **yahc** you just call the method 
 **delete** and set the following parameter:
