@@ -60,9 +60,9 @@ HttpClient.get({
 ```
 
 ## Headers
-Every method of **yahc** allow you to set header of the request. In particular every
-take in input an objet parameter **headers** that is an object with key value
-representation of the header request.
+Every method of **yahc** allow you to set header of the request. In particular 
+every take in input an objet parameter **headers** that is an object with key 
+value representation of the header request.
 
 #### Example:
 
@@ -138,7 +138,8 @@ Sometimes the server for which you make a request coul be not available so after
 some period of times you get a timeout erro the server bot able to give you a 
 valid response after the specified time. Default timeout parameter is setted to
 15000 ms, but you free to change that value. **yahc** expose the value of 
-default timeout through the constant DEFAULT_TIMEOUT. 
+default timeout through the constant DEFAULT_TIMEOUT. Remember that the value
+of timeout for the request must be expressed in milliseconds (ms).
 
 #### Example
 
@@ -172,6 +173,37 @@ HttpClient.get({
 });  
 ```
   
+## Querystring
+Every method of **yahc** allow you to set querystring of the request. In 
+particular every take in input an objet parameter **qs** that is an object with
+key value representation of the querystring for the request.
 
+#### Example
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+HttpClient.get({
+  url: "YOUR URL",
+  headers: {},
+  // HERE YOUR KEY VALUE PAIRS FOR quesrystring
+  qs: {
+    q: "yahc"
+  },
+  encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+  isJson: false,
+  timeout: HttpClient.DEFAULT_TIMEOUT
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+```
 
 
