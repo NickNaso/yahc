@@ -29,3 +29,31 @@ launch this command:
 npm install yahc --save
 ```
 ## Simple  use
+
+To start using **yahc** you import it in you project the to make request use one
+of its method **.get()**, **.post()**, **put()** or **delete()**. You can
+understand that only GET, POST, PUT, DELETE HTTP VERBS are permitted.  
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+HttpClient.get({
+  url: "YOUR URL",
+  headers: {},
+  qs: {},
+  encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+  isJson: false,
+  timeout: HttpClient.DEFAULT_TIMEOUT
+  })
+  .then((response) => {
+    // Do something with response
+    console.log(response);  
+  })
+  .catch((err) => {
+   // Do something with error response
+    console.error(err); 
+  });  
+
+```
