@@ -34,6 +34,8 @@ To start using **yahc** you import it in you project the to make request use one
 of its method **.get()**, **.post()**, **put()** or **delete()**. You can
 understand that only GET, POST, PUT, DELETE HTTP VERBS are permitted.  
 
+#### Example
+
 ```javascript
 'use strict';
 
@@ -58,11 +60,12 @@ HttpClient.get({
 ```
 
 ## Headers
-Every method of yahc allow you to set header of the request. In particular every
+Every method of **yahc** allow you to set header of the request. In particular every
 take in input an objet parameter **headers** that is an object with key value
 representation of the header request.
 
 #### Example:
+
 ```javascript
 'use strict';
 
@@ -88,4 +91,46 @@ HttpClient.get({
   console.error(err); 
 });  
 ```
+
+## encType 
+Every method of **yahc** has encType parameter which represent the encoding 
+type used by **yahc** to send data to the server. In general there are two
+possible choice for **encType**:
+* application/x-www-form-urlencoded - GET - POST - PUT - DELETE
+* multipart/form-data - POST - PUT
+
+The library expose these value using constant so you can set it using these 
+constant as in the example reported below:
+#### Example
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+// get application/x-www-form-urlencoded
+let urlencode = HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED;
+
+// get multipart/form-data
+let formdata = HttpClient.ENC_TYPES.MULTIPART_FORM_DATA;
+
+// use urlencode or formdata to meke request using yahc
+HttpClient.get({
+  url: "YOUR URL",
+  headers: {},
+  qs: {},
+  encType: urlencode,
+  isJson: false,
+  timeout: HttpClient.DEFAULT_TIMEOUT
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+```
+
 
