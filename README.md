@@ -46,14 +46,14 @@ HttpClient.get({
   encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
   isJson: false,
   timeout: HttpClient.DEFAULT_TIMEOUT
-  })
-  .then((response) => {
-    // Do something with response
-    console.log(response);  
-  })
-  .catch((err) => {
-   // Do something with error response
-    console.error(err); 
-  });  
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
 
 ```
