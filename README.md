@@ -322,12 +322,61 @@ HttpClient.get({
 ## Make request
 **Yet Another Http Client** allow make http request with simplicity. The 
 supported HTTP verbs are:
+
 * GET - .get() method
 * POST - .post() method
 * PUT - .put() method
 * DELETE - .delete() method
  
- ## 
+## GET
+HTTP GET request is very simple with **yahc** you just call the mwethod **get**
+and set the following parameter:
+* **url** - Represent the url / uri of the requested resource
+* **headers** - Headers for the request. Object that contain key value for the
+headers.
+* **qs** - Querystring for the reuqest. Object that contain key value for the
+querystring.
+* **encType** - Encoding for the request. Only  application/x-www-form-urlencoded
+is allowed for get request.
+* **isJson** - true / false. Setted true the value "Content-type: application/json"
+will be added to the request header and the server body response will be parsed
+as JSON.
+
+## Example 
+
+```javascript
+'use strict';
+
+const HttpClient = require('yahc');
+
+// use timeout to  make request using yahc
+HttpClient.get({
+  url: "YOUR URL",
+  headers: {
+    Authorization: "Basic "+ "myUsername:myPassword".toString('base64')
+  },
+  qs: {
+    q: "http client"
+  },
+  encType: HttpClient.X_WWW_FORM_URLENCODED,
+  isJson: true,
+  timeout: 7000
+})
+.then((response) => {
+  // Do something with response
+  console.log(response);  
+})
+.catch((err) => {
+  // Do something with error response
+  console.error(err); 
+});  
+```
+ 
+## POST e PUT
+
+## POST e PUT (Upload file)
+ 
+## DELETE
 
 
 
