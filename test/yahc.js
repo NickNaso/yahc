@@ -113,6 +113,30 @@ describe("Test yahc", function () {
   );
 
   it(
+    "GET - application/x-www-form-urlencoded - dynamic call", 
+    function (done) {
+      HttpClient['get']({ //jshint ignore:line
+        url: "http://" + host + ":" + port + "/get",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: false,
+        timeout: HttpClient.DEFAULT_TIMEOUT
+      })
+      .then((response) => {
+        expect(response.body).toBe("Come up to meet you, tell you I'm sorry");
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        expect(err).toBeUndefined();
+        done();
+      });  
+    }
+  );
+
+  it(
     "GET - application/x-www-form-urlencoded - json", 
     function (done) {
       HttpClient.get({
@@ -170,6 +194,36 @@ describe("Test yahc", function () {
         version: "1.0.0"
       };
       HttpClient.post({
+        url: "http://" + host + ":" + port + "/post",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: false,
+        body: myBody,
+        timeout: HttpClient.DEFAULT_TIMEOUT
+      })
+      .then((response) => {
+        expect(JSON.parse(response.body)).toEqual(myBody);
+        expect(response.statusCode).toEqual(201);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        expect(err).toBeUndefined();
+        done();
+      });  
+    }
+  );
+
+  it(
+    "POST - application/x-www-form-urlencoded - dynamic call", 
+    function (done) {
+      let myBody = {
+        name: "yahc",
+        description: "Yet Another Http Client",
+        version: "1.0.0"
+      };
+      HttpClient['post']({ //jshint ignore:line
         url: "http://" + host + ":" + port + "/post",
         headers: {},
         qs: {},
@@ -255,6 +309,36 @@ describe("Test yahc", function () {
         expect(err).toBeUndefined();
         done();
       });  
+    }
+  );
+
+  it(
+    "PUT - application/x-www-form-urlencoded - dynamic call", 
+    function (done) {
+        let myBody = {
+        name: "yahc",
+        description: "Yet Another Http Client",
+        version: "1.0.0"
+      };
+      HttpClient['put']({ //jshint ignore:line
+        url: "http://" + host + ":" + port + "/put",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: false,
+        body: myBody,
+        timeout: HttpClient.DEFAULT_TIMEOUT
+      })
+      .then((response) => {
+        expect(JSON.parse(response.body)).toEqual(myBody);
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        expect(err).toBeUndefined();
+        done();
+      });
     }
   );
 
@@ -364,6 +448,36 @@ describe("Test yahc", function () {
         version: "1.0.0"
       };
       HttpClient.delete({
+        url: "http://" + host + ":" + port + "/delete",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: false,
+        body: myBody,
+        timeout: HttpClient.DEFAULT_TIMEOUT
+      })
+      .then((response) => {
+        expect(JSON.parse(response.body)).toEqual(myBody);
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        expect(err).toBeUndefined();
+        done();
+      });  
+    }
+  );
+
+  it(
+    "DELETE - application/x-www-form-urlencoded - dynamic call", 
+    function (done) {
+       let myBody = {
+        name: "yahc",
+        description: "Yet Another Http Client",
+        version: "1.0.0"
+      };
+      HttpClient['delete']({
         url: "http://" + host + ":" + port + "/delete",
         headers: {},
         qs: {},
