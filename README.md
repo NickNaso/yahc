@@ -1,22 +1,29 @@
 # yahc
+
 Yet Another Http Client
 
-**Yet Another Http Client** is a small client side HTTP request library. The 
-purpose is to permit to make http request with simplicity.
+**Yet Another Http Client** is a small client side HTTP request library. The
+purpose is to permit to make http requests with simplicity.
 
 ## Installation
-If you want use **yahc** you have to install it. There are two methods to do 
+
+If you want use **yahc** you have to install it. There are two methods to do
 that:
 
-n your package.json add the following item:
+In your package.json add the following item:
+
 ```json
 "yahc": "version"
 ```
+
 then digit:
+
 ```console
 npm install
 ```
+
 **Example**:
+
 ```json
 "yahc": "*" for the latest version
 "yahc": "1.0.0" for the version 1.0.0
@@ -25,15 +32,17 @@ npm install
 **OR**
 
 launch this command:
+
 ```console
 npm install yahc --save
 ```
 
 ## Simple  use
 
-To start using **yahc** you import it in you project the to make request use one
-of its method **.get()**, **.post()**, **put()** or **delete()**. You can
-understand that only GET, POST, PUT, DELETE HTTP VERBS are permitted.  
+To start using **yahc** you have to import it in you project. To make a HTTP
+request use one of its methods **.get()**, **.post()**, **put()** or
+**delete()**. You can understand that only GET, POST, PUT, DELETE HTTP VERBS are
+permitted.
 
 #### Example
 
@@ -52,17 +61,19 @@ HttpClient.get({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
+
 ## Headers
-Every method of **yahc** allow you to set header of the request. In particular 
-every take in input an objet parameter **headers** that is an object with key 
-value representation of the header request.
+
+Every method of **yahc** allows you to set the request's header. In particular
+every method take in input an objet parameter **headers** that is an object with
+a **key - value** representation of the request's header.
 
 #### Example:
 
@@ -84,22 +95,26 @@ HttpClient.get({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
-## encType 
-Every method of **yahc** has encType parameter which represent the encoding 
+
+## encType
+
+Every method of **yahc** has an encType parameter which represent the encoding
 type used by **yahc** to send data to the server. In general there are two
-possible choice for **encType**:
+possible choices for **encType**:
+
 * application/x-www-form-urlencoded - GET - POST - PUT - DELETE
 * multipart/form-data - POST - PUT
 
-The library expose these value using constant so you can set it using these 
-constant as in the example reported below:
+The library exposes these values using constants, so you can set it using these
+constants as in the example reported below:
+
 #### Example
 
 ```javascript
@@ -124,20 +139,22 @@ HttpClient.get({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
+
 ## Timeout
-Sometimes the server for which you make a request coul be not available so after
-some period of times you get a timeout erro the server bot able to give you a 
-valid response after the specified time. Default timeout parameter is setted to
-15000 ms, but you free to change that value. **yahc** expose the value of 
-default timeout through the constant DEFAULT_TIMEOUT. Remember that the value
-of timeout for the request must be expressed in milliseconds (ms).
+
+Sometimes the server for which you make a request could not be available so
+after some time you get a timeout error from the server stating it's not able
+to give you a valid response after the specified time. Default timeout parameter
+is set to 15000 ms, but you're free to change that value. **yahc** exposes the
+value of default timeout through the constant **DEFAULT_TIMEOUT**. Remember that
+the value of timeout for the request must be expressed in milliseconds (ms).
 
 #### Example
 
@@ -163,18 +180,19 @@ HttpClient.get({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
 
 ## Querystring
-Every method of **yahc** allow you to set querystring of the request. In 
-particular every take in input an objet parameter **qs** that is an object with
-key value representation of the querystring for the request.
+
+Every method of **yahc** allows you to set querystring of the request. In
+particular, every method take in input an objet parameter **qs** that is an
+object with a **key - value** representation of the querystring for the request.
 
 #### Example
 
@@ -196,22 +214,26 @@ HttpClient.get({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
-## isJson 
-The parameter **isJson** is common for all method of **yahc** and  if setted to 
-true the value "Content-type: application/json" will be added to the request 
-header and the server body response will be parsed as JSON.  
+
+## isJson
+
+The parameter **isJson** is common for all methods of **yahc** and if set to
+true the value "Content-type: application/json" will be added to the request's
+header and the server response's body will be parsed as JSON.
 
 ## Response
-When making request you obtain a response from the server. Tha response matches
-the requested resource or an error. **yahc** structrude the object response in
+
+When making request you obtain a response from the server. Tha response returns
+the requested resource or an error. **yahc** structures the object response in
 three parts:
+
 * **haders** - Contains the headers of the server response
 * **body** - Contains the body of the server response
 * **statusCode** - Represent the HTTP status code for the server response
@@ -243,7 +265,7 @@ HttpClient.get({
   console.log(response);
   // OUTPUT:
   /*
-  { 
+  {
     headers: {
       'x-powered-by': 'Express',
       'content-type': 'application/json; charset=utf-8',
@@ -259,13 +281,13 @@ HttpClient.get({
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
-``` 
+  console.error(err);
+});
+```
 
-If the server response contain one of the HTTP error (for more info see:
-[HTTP ERRORS](https://www.npmjs.com/package/error-types)) **yahc** throw a
-ResponseError an object that represent the error and internally contain the 
+If the server response contains one of the HTTP error (for more info see:
+[HTTP ERRORS](https://www.npmjs.com/package/error-types)) **yahc** throws a
+ResponseError as an object that represents the error and internally contains the
 server response.
 
 #### Example
@@ -296,11 +318,11 @@ HttpClient.get({
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err.response); 
+  console.error(err.response);
   console.error(err.message);
   // OUTPUT:
   /*
-  { 
+  {
     headers: {
       'x-powered-by': 'Express',
       'content-type': 'application/json; charset=utf-8',
@@ -313,10 +335,12 @@ HttpClient.get({
     statusCode: 200
   }
   */
-});  
+});
 ```
+
 ## Make request
-**Yet Another Http Client** allow make http request with simplicity. The 
+
+**Yet Another Http Client** allows to make HTTP requests with simplicity. The
 supported HTTP verbs are:
 
 * **GET** - .get() method
@@ -325,19 +349,16 @@ supported HTTP verbs are:
 * **DELETE** - .delete() method
 
 ## GET
-HTTP GET request is very simple with **yahc** you just call the method **get**
-and set the following parameter:
-* **url** - Represent the url / uri of the requested resource
-* **headers** - Headers for the request. Object that contain key value for the
-headers.
-* **qs** - Querystring for the reuqest. Object that contain key value for the
-querystring.
-* **encType** - Encoding for the request. Only  application/x-www-form-urlencoded
-is allowed for get request.
-* **isJson** - true / false. Setted true the value "Content-type: application/json"
-will be added to the request header and the server body response will be parsed
-as JSON.
-* **timeout** - Number of milliseconds after that the client return timeout error
+
+HTTP GET request is very simple with **yahc**, you just need to call the method
+**get** and set the following parameters:
+
+* **url** - Represents the url / uri of the requested resource.
+* **headers** - Headers for the request. Object that contains key-value for the headers.
+* **qs** - Querystring for the reuqest. Object that contains key-value for the querystring.
+* **encType** - Encoding for the request. Only  application/x-www-form-urlencoded is allowed for get request.
+* **isJson** - true / false. If set to true, the value "Content-type: application/json" will be added to the request header and the server body response will be parsed as JSON.
+* **timeout** - Number of milliseconds, after that the client returns a timeout error.
 
 #### Example 
 
@@ -361,28 +382,26 @@ HttpClient.get({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
+
 ## POST e PUT
-HTTP POST or PUT request is very simple with **yahc** you just call the method 
-**post** or **put** and set the following parameter:
-* **url** - Represent the url / uri of the requested resource
-* **headers** - Headers for the request. Object that contain key value for the
-headers.
-* **qs** - Querystring for the reuqest. Object that contain key value for the
-querystring.
+
+HTTP POST or PUT requests are very simple with **yahc**, you just need to call
+the method **post** or **put** and set the following parameters:
+
+* **url** - Represents the url / uri of the requested resource.
+* **headers** - Headers for the request. Object that contains key-value for the headers.
+* **qs** - Querystring for the reuqest. Object that contains key-value for the querystring.
 * **encType** - Encoding for the request.
-* **isJson** - true / false. Setted true the value "Content-type: application/json"
-will be added to the request header and the server body response will be parsed
-as JSON.
-* **body** - The body for the http request. It's an object that contain key 
-value for the body.
-* **timeout** - Number of milliseconds after that the client return timeout error
+* **isJson** - true / false. If set to true, the value "Content-type: application/json" will be added to the request header and the server body response will be parsed as JSON.
+* **body** - The body for the http request. It's an object that contains key-value for the body.
+* **timeout** - Number of milliseconds, after that the client returns a timeout error.
 
 #### Example 
 
@@ -409,34 +428,29 @@ HttpClient.post({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
-``` 
+  console.error(err);
+});
+```
+
 ## POST e PUT (Upload file)
+
 In case you want to upload one or more file you need to call **post** or **put**
-method with encType setted to multipart/form-data and the parameter files that
-represent an array of files or files representation that you want to upload on 
-th server. Post and put parameter in case of upload:
-* **url** - Represent the url / uri of the requested resource
-* **headers** - Headers for the request. Object that contain key value for the
-headers.
-* **qs** - Querystring for the reuqest. Object that contain key value for the
-querystring.
-* **encType** - Encoding for the request. In case of file upload it have to be
-setted to multpart/form-data
-* **isJson** - true / false. Setted true the value "Content-type: application/json"
-will be added to the request header and the server body response will be parsed
-as JSON.
-* **body** - The body for the http request. It's an object that contain key 
-value for the body.
-* **timeout** - Number of milliseconds after that the client return timeout error
-* **files** - This parameter represent the list of file you want to upload. It 
-is an array and its element must be a Buffer a Readable stream or object with this
-form {name: "myFieldName", file: "Buffer or Readable stream}
+method with encType set to multipart/form-data and the parameter **files** that
+represents an array of files or file representations that you want to upload on
+the server. Post and put parameters in case of upload:
+
+* **url** - Represents the url / uri of the requested resource.
+* **headers** - Headers for the request. Object that contain key-value for the headers.
+* **qs** - Querystring for the reuqest. Object that contains key-value for the querystring.
+* **encType** - Encoding for the request. In case of file upload it has to be set to multpart/form-data.
+* **isJson** - true / false. If set to true, the value "Content-type: application/json" will be added to the request header and the server body response will be parsed as JSON.
+* **body** - The body for the HTTP request. It's an object that contains key-value for the body.
+* **timeout** - Number of milliseconds, after that the client returns a timeout error.
+* **files** - This parameter represents the list of file you want to upload. It is an array and its element must be a Buffer, a Readable stream or an object with this form {name: "myFieldName", file: "Buffer or Readable stream}.
 
 #### Example
 
@@ -459,29 +473,26 @@ HttpClient.post({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
+
 ## DELETE
-HTTP DELETE request is very simple with **yahc** you just call the method 
-**delete** and set the following parameter:
-* **url** - Represent the url / uri of the requested resource
-* **headers** - Headers for the request. Object that contain key value for the
-headers.
-* **qs** - Querystring for the reuqest. Object that contain key value for the
-querystring.
-* **encType** - Encoding for the request. Only  application/x-www-form-urlencoded
-is allowed for get request.
-* **isJson** - true / false. Setted true the value "Content-type: application/json"
-will be added to the request header and the server body response will be parsed
-as JSON.
-* **body** - The body for the http request. It's an object that contain key 
-value for the body.
-* **timeout** - Number of milliseconds after that the client return timeout error
+
+HTTP DELETE request is very simple with **yahc**, you just need to call the
+method **delete** and set the following parameters:
+
+* **url** - Represents the url / uri of the requested resource.
+* **headers** - Headers for the request. Object that contains key-value for the headers.
+* **qs** - Querystring for the reuqest. Object that contains key-value for the querystring.
+* **encType** - Encoding for the request. Only  application/x-www-form-urlencoded is allowed for get request.
+* **isJson** - true / false. If set to true, the value "Content-type: application/json" will be added to the request header and the server body response will be parsed as JSON.
+* **body** - The body for the HTTP request. It's an object that contains key-value for the body.
+* **timeout** - Number of milliseconds after that the client returns a timeout error.
 
 #### Example 
 
@@ -508,13 +519,10 @@ HttpClient.delete({
 })
 .then((response) => {
   // Do something with response
-  console.log(response);  
+  console.log(response);
 })
 .catch((err) => {
   // Do something with error response
-  console.error(err); 
-});  
+  console.error(err);
+});
 ```
-
-
-
