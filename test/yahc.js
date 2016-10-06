@@ -56,6 +56,10 @@ describe("Test yahc", function () {
     let myBody = req.body || {};
     res.status(201).json(myBody);
   });
+  app.post("/post-array-json", function(req, res) {
+    let myBody = req.body || [];
+    res.status(201).json(myBody);
+  });
   app.post("/post-form-data", function (req, res) {
     let form = new formidable.IncomingForm();
     form.multiples = true;
@@ -255,6 +259,36 @@ describe("Test yahc", function () {
       };
       HttpClient.post({
         url: "http://" + host + ":" + port + "/post-json",
+        headers: {},
+        qs: {},
+        encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
+        isJson: true,
+        body: myBody,
+        timeout: HttpClient.DEFAULT_TIMEOUT
+      })
+      .then((response) => {
+        expect(response.body).toEqual(myBody);
+        expect(response.statusCode).toEqual(201);
+        expect(response.headers).not.toBeUndefined();
+        done();
+      })
+      .catch((err) => {
+        expect(err).toBeUndefined();
+        done();
+      });  
+    }
+  );
+
+  it(
+    "POST - application/x-www-form-urlencoded - json array in request", 
+    function (done) {
+      let myBody = [{
+        name: "yahc",
+        description: "Yet Another Http Client",
+        version: "1.0.0"
+      }];
+      HttpClient.post({
+        url: "http://" + host + ":" + port + "/post-array-json",
         headers: {},
         qs: {},
         encType: HttpClient.ENC_TYPES.X_WWW_FORM_URLENCODED,
