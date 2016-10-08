@@ -105,7 +105,7 @@ HttpClient.get({
 
 ## encType
 
-Every method of **yahc** has an encType parameter which represent the encoding
+Every method of **yahc** has an encType parameter which represents the encoding
 type used by **yahc** to send data to the server. In general there are two
 possible choices for **encType**:
 
